@@ -1,16 +1,17 @@
-import asyncio
 import logging
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import ParseMode
 from config import BOT_TOKEN
 from db import init_db
-from menu import router
+from menu import register_handlers
 
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
 dp = Dispatcher(bot)
-dp.include_router(router)
+
+# Регистрируем все обработчики из menu.py
+register_handlers(dp)
 
 async def on_startup(dp):
     init_db()
