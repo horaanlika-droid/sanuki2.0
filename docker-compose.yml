@@ -1,0 +1,18 @@
+services:
+  sanuki:
+    build: .
+    container_name: sanuki
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      PORT: 8000
+      # Раскомментируйте и укажите внешний адрес, чтобы в боте появилась
+      # кнопка «Открыть SANUKI» (Telegram Web App):
+      # WEBAPP_URL: https://example.com
+    volumes:
+      - sanuki-data:/app/data
+
+volumes:
+  sanuki-data:

@@ -1,0 +1,22 @@
+# локальные секреты
+.env
+.env.local
+
+# база данных и логи
+data/
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# редакторы / ОС
+.idea/
+.vscode/
+.DS_Store

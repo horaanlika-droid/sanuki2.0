@@ -1,5 +1,16 @@
-aiogram==2.25.1
-SQLAlchemy==2.0.43
+# --- веб ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+aiofiles==24.1.0
+
+# --- бот ---
+aiogram==3.14.0
+
+# --- данные ---
 aiosqlite==0.21.0
 python-dotenv==1.1.1
-aiofiles==24.1.0
+
+# --- оплата (реальный режим ЮMoney) ---
+# версия ограничена требованием aiogram (<3.11)
+aiohttp==3.10.11

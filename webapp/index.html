@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#F76D10">
+<title>SANUKI UDON SHOP</title>
+<meta name="description" content="SANUKI UDON SHOP — конструктор удона, заказ и статусы онлайн.">
+<link rel="icon" href="/static/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/static/img/favicon.png">
+<meta property="og:title" content="SANUKI UDON SHOP">
+<meta property="og:description" content="Собери свой идеальный удон за 4 шага">
+<meta property="og:image" content="/static/img/og.png">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div id="app-shell">
+  <header id="app-header" class="hidden">
+    <div class="header-inner">
+      <button id="btn-back" class="icon-btn hidden" aria-label="Назад">‹</button>
+      <div class="header-title">
+        <span class="logo-mini">SANUKI</span>
+        <span class="header-sub" id="header-sub"></span>
+      </div>
+      <div class="header-right" id="header-right"></div>
+    </div>
+  </header>
+
+  <main id="view"></main>
+
+  <nav id="tabbar" class="hidden">
+    <button class="tab" data-route="#/"><span>🏠</span><i>Главная</i></button>
+    <button class="tab" data-route="#/menu"><span>🍜</span><i>Меню</i></button>
+    <button class="tab" data-route="#/cart"><span>🛒</span><i>Корзина</i></button>
+    <button class="tab" data-route="#/orders"><span>📋</span><i>Заказы</i></button>
+    <button class="tab" data-route="#/profile"><span>👤</span><i>Профиль</i></button>
+  </nav>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<!-- экран входа, если нет данных Telegram -->
+<div id="login-screen" class="login-screen hidden">
+  <div class="login-card">
+    <img src="/static/img/logo.png" alt="SANUKI" class="login-logo">
+    <h1>SANUKI UDON SHOP</h1>
+    <p class="muted" id="login-hint">Подключаемся к Telegram…</p>
+    <div id="login-dev" class="login-dev hidden">
+      <p class="muted small">Telegram не обнаружен — демо-вход (DEV_LOGIN=1):</p>
+      <input id="dev-id" inputmode="numeric" placeholder="Telegram ID" class="dev-input"
+             value="1896036065">
+      <button class="btn primary block" id="dev-login">Войти</button>
+      <button class="btn ghost block" id="dev-guest">Войти случайным гостем</button>
+      <p class="muted small hidden" id="dev-error"></p>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/ui.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
