@@ -1,0 +1,17 @@
+# секреты и окружение
+.env
+
+# база данных
+sanuki.db
+sanuki.db-wal
+sanuki.db-shm
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# служебное
+.DS_Store
+*.log

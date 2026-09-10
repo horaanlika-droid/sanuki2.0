@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SANUKI UDON SHOP</title>
+  <meta name="description" content="SANUKI — конструктор удона. Футуристичный вкус Японии в сердце Петербурга.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <img src="assets/img/logo.png" alt="SANUKI" class="logo">
+      <div class="title">SANUKI<small>конструктор удона и доставки</small></div>
+      <button class="icon-btn" id="cart-btn" title="Корзина">🛒<span class="badge" id="cart-badge">0</span></button>
+    </header>
+
+    <main class="content">
+      <section class="view" id="view-home"></section>
+      <section class="view" id="view-menu"></section>
+      <section class="view" id="view-udon"></section>
+      <section class="view" id="view-cart"></section>
+      <section class="view" id="view-success"></section>
+      <section class="view" id="view-orders"></section>
+      <section class="view" id="view-order" data-order-id=""></section>
+      <section class="view" id="view-profile"></section>
+      <section class="view" id="view-about"></section>
+      <section class="view" id="view-admin"></section>
+    </main>
+
+    <div id="dockbar" style="display:none"></div>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-view="home"><span class="ico">🏠</span>Главная</button>
+      <button class="nav-item" data-view="menu"><span class="ico">🍱</span>Меню</button>
+      <button class="nav-item" data-view="cart"><span class="ico">🛒</span>Корзина<span class="nav-badge" id="nav-cart-badge">0</span></button>
+      <button class="nav-item" data-view="orders"><span class="ico">📋</span>Заказы</button>
+      <button class="nav-item" data-view="profile"><span class="ico">👤</span>Профиль</button>
+    </nav>
+
+    <div id="toast"></div>
+  </div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
