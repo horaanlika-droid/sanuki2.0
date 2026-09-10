@@ -1,21 +1,47 @@
+"""
+SANUKI — точка входа: поднимает веб-приложение (FastAPI, порт WEB_PORT)
+и Telegram-бота (long polling) в одном процессе.
+
+На BotHost достаточно трёх переменных окружения:
+    BOT_TOKEN     — токен бота из BotFather
+    ADMIN_ID      — ID администратора (можно несколько через запятую)
+    YOOMONEY_API  — ключ API ЮMoney (пока можно оставить пустым — работает заглушка)
+
+Опционально:
+    WEB_BASE_URL  — публичный https-адрес веб-приложения (для кнопки в боте)
+    WEB_PORT      — порт веб-приложения (по умолчанию 8000)
+"""
+import asyncio
 import logging
-from aiogram import Bot, Dispatcher, executor
-from aiogram.types import ParseMode
-from config import BOT_TOKEN
-from db import init_db
-from menu import register_handlers
+import threading
 
-logging.basicConfig(level=logging.INFO)
+import uvicorn
 
-bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
-dp = Dispatcher(bot)
+from config import BOT_TOKEN, WEB_PORT
 
-# Регистрируем все обработчики из menu.py
-register_handlers(dp)
+log = logging.getLogger("sanuki")
 
-async def on_startup(dp):
-    init_db()
-    logging.info("SANUKI BOT запущен!")
+
+def run_web() -> None:
+    uvicorn.run(
+        "webapp.server:app",
+        host="0.0.0.0",
+        port=WEB_PORT,
+        log_level="warning",
+    )
+
+
+def main() -> None:
+    threading.Thread(target=run_web, daemon=True, name="sanuki-web").start()
+
+    if not BOT_TOKEN:
+        log.warning("BOT_TOKEN не задан — запускаю только веб-приложение.")
+        threading.Event().wait()  # спим вечно
+        return
+
+    from bot import main as bot_main
+    asyncio.run(bot_main())
+
 
 if __name__ == "__main__":
-    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)
+    main()
